@@ -26,9 +26,11 @@ Explore possible future features or enhancements, such as adding a ranking syste
 Provide clear instructions on how users can interact with the app, including any setup requirements or dependencies.
 
 1. Initial Setup: Select which contacts will be included in the game.
-- ![Alt text](readme-assets/contact_list_small.png)
+- ![Screenshot of the contact selection list page](readme-assets/contact_list_small.png)
 2. Select your game mode: Normal Play or Daily Challenge.
+- ![Screenshot of the game mode selection page](readme-assets/home-page.png)
 3. Guess contact name or area based on the hints provided for you.
+- ![Screenshot of the phone number guessing page](readme-assets/guess.png)
 4. Click "Go!" to enter your submission.
 5. If your guess is correct you will recieve currency. If not you will lose a heart.
 
@@ -48,12 +50,3 @@ Acknowledge and give credit to individuals who have contributed to the project:
 - **Jonas Garibay**
 - **Garrett Smith**
 - **Phil Hail**
-
-
-
- 
-
-
-
-
-
