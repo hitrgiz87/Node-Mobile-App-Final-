@@ -17,7 +17,10 @@ The app is built using the following technologies:
 
 ## Future Implementations
 
-Explore possible future features or enhancements, such as adding a ranking system or implementing an area code game.
+Potential future features or enhancements:
+- Ranking System
+- Implementing an area code game
+- Save game info to the cloud
 
 ## How to Use
 
