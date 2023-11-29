@@ -1,7 +1,7 @@
 # Contact Conundrum
 
 
-
+![Alt text](readme-assets/contact-conundrum.png)
 
 ## Reason for Making the App
 
@@ -14,21 +14,20 @@ The app is built using the following technologies:
 - **Node.js:** Used for server-side development.
 - **Axios:** A promise-based HTTP client for making API requests.
 - **HTML, CSS, JS:** Front-end technologies for creating the user interface.
+- **Bootstrap:** Mobile first CSS framework.
+- **Express:**  A back end web application framework for building RESTful APIs with Node.js
 
 ## Future Implementations
 
-Potential future features or enhancements:
-- Ranking System
-- Implementing an area code game
-- Save game info to the cloud
+Explore possible future features or enhancements, such as adding a ranking system or implementing an area code game.
 
 ## How to Use
 
+Provide clear instructions on how users can interact with the app, including any setup requirements or dependencies.
+
 1. Initial Setup: Select which contacts will be included in the game.
-2. Select either Daily or Contact Guess mode.
-3. Guess the contact name based on the hints provided for you.
-4. Click "Go!" to check your answer.
-5. You will gain currency if your guess is correct. If not you will lose a heart.
+2. Step 2
+3. ...
 
 ## How to Contribute
 
@@ -41,7 +40,8 @@ Encourage others to contribute to the project by providing guidelines on how the
 
 ## Credits
 
-This project was created by:
+Acknowledge and give credit to individuals who have contributed to the project:
+
 - **Jonas Garibay**
 - **Garrett Smith**
 - **Phil Hail**
