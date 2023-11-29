@@ -38,8 +38,7 @@ Encourage others to contribute to the project by providing guidelines on how the
 
 ## Credits
 
-Acknowledge and give credit to individuals who have contributed to the project:
-
+This project was created by:
 - **Jonas Garibay**
 - **Garrett Smith**
 - **Phil Hail**
