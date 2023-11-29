@@ -23,7 +23,7 @@ Explore possible future features or enhancements, such as adding a ranking syste
 
 Provide clear instructions on how users can interact with the app, including any setup requirements or dependencies.
 
-1. Step 1
+1. Initial Setup: Select which contacts will be included in the game.
 2. Step 2
 3. ...
 
@@ -40,9 +40,9 @@ Encourage others to contribute to the project by providing guidelines on how the
 
 Acknowledge and give credit to individuals who have contributed to the project:
 
-- **Jonas**
-- **Garrett**
-- **Phil**
+- **Jonas Garibay**
+- **Garrett Smith**
+- **Phil Hail**
 
 
 
