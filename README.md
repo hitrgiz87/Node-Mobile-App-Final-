@@ -28,7 +28,7 @@ Provide clear instructions on how users can interact with the app, including any
 1. Initial Setup: Select which contacts will be included in the game.
 - ![Alt text](readme-assets/contact_list_small.png)
 2. Select your game mode: Normal Play or Daily Challenge.
-3. Guess contact name based on the hints provided for you.
+3. Guess contact name or area based on the hints provided for you.
 4. Click "Go!" to enter your submission.
 5. If your guess is correct you will recieve currency. If not you will lose a heart.
 
