@@ -1,10 +1,11 @@
-# Project Name
+# Contact Conundrum
 
-Briefly describe the purpose and goal of the app.
+
+
 
 ## Reason for Making the App
 
-Explain why this app was developed and its intended use.
+The primary objective of this app is to transform the process of acquiring contacts into an engaging and gamified learning experience. In a world where memorizing phone numbers has become a thing of the past, our app aims to make the task of gathering and remembering contacts not only functional but also enjoyable.
 
 ## Elements Used
 
@@ -43,13 +44,7 @@ Acknowledge and give credit to individuals who have contributed to the project:
 - **Garrett**
 - **Phil**
 
-## License
 
-Include information about the project's license, if applicable.
-
-## Contact
-
-Provide contact information for questions, issues, or collaboration opportunities.
 
  
 
