@@ -21,11 +21,11 @@ Explore possible future features or enhancements, such as adding a ranking syste
 
 ## How to Use
 
-Provide clear instructions on how users can interact with the app, including any setup requirements or dependencies.
-
 1. Initial Setup: Select which contacts will be included in the game.
-2. Step 2
-3. ...
+2. Select either Daily or Contact Guess mode.
+3. Guess the contact name based on the hints provided for you.
+4. Click "Go!" to check your answer.
+5. You will gain currency if your guess is correct. If not you will lose a heart.
 
 ## How to Contribute
 
