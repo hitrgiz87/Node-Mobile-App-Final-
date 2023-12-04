@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <table border="1">
+        <thead>
+            <tr>
+                <td>Name</td>
+                <td>Number</td>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% for(var i=0; i< contacts.length; i++) {%>
+                <tr>
+                    <td><%= contacts[i].name %></td>
+                    <td><%= contacts[i].number %></td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+  </body>
+</html>
