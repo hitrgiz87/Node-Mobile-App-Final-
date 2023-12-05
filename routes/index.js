@@ -1,6 +1,8 @@
 var express = require('express');
-const Contact = require('../models/contact');
 var router = express.Router();
+var axios = require('axios');
+const Contact = require('../models/contact');
+
 
 /* GET home page. */
 router.get('/', async function(req, res, next) {
@@ -24,10 +26,6 @@ router.get('/', async function(req, res, next) {
         res.render('index');
     }
 
-});
-
-router.get('/contact-select', function(req, res, next) {
-    res.render('contactselect');
 });
 
 // TODO: Add navigation with other pages once they are co

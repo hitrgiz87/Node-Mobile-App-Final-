@@ -1,9 +1,31 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Contact Select</title>
-  </head>
-  <body>
-    <h1> CONTACT SELECT</h1>
-  </body>
+    <head>
+        <title>Contact Select</title>
+        <%- include ./partials/header %>
+    </head>
+    <body>
+        <h1> CONTACT SELECT</h1>
+        <div class="container">
+            <form>
+                <% for (let i=0; i < userData.length; i++) { %>
+                    <div class="row border">
+                        <div class="col">
+                            <img src=<%= profilePic[i] %> /> 
+                        </div>
+
+                        <!-- TODO: make table or form work i dont care -->
+                        <!-- <div class="col">
+                            <p>;lkjasdffjkl;</p>
+                            <p>;lkjasdffjkl;</p>
+                        </div> -->
+                    </div>
+                <% } %>
+            </form>
+        </div>
+
+    <%- include ./partials/scripts %>
+    </body>
 </html>
+
+
