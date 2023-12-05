@@ -4,7 +4,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', async function(req, res, next) {
-    let contacts = await Contact.find();
+    // let contacts = await Contact.find(); // Disable Contact.find - Fix Later
 
     // var humphrey = new Contact({
     //     name:"humphrey",
@@ -18,7 +18,7 @@ router.get('/', async function(req, res, next) {
     // }
 
     // If the database is empty run through initial contact selection
-    if (contacts.length == 0 && false) { // Effectively disable this for now - Phil
+    if (false && contacts.length == 0) { // Disable Contact.find - Fix Later
         res.redirect('/contact-select');
     } else {
         res.render('index');
