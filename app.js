@@ -7,10 +7,11 @@ var mongoose = require('mongoose');
 
 require('dotenv').config({ path: __dirname + '/.env'});
 
-mongoose.connect(process.env['DATABASE']);
+mongoose.connect('');
 
 var indexRouter = require('./routes/index');
 var contactSelectRouter = require('./routes/contactselect');
+var contactRouter = require('./routes/contactGuess');
 
 var app = express();
 
@@ -26,6 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/contact-select', contactSelectRouter);
+app.use('/contactGuess', contactRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
