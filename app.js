@@ -11,6 +11,7 @@ mongoose.connect(process.env['DATABASE']);
 
 var indexRouter = require('./routes/index');
 var contactSelectRouter = require('./routes/contactselect');
+var dailyChallengeRouter = require('./routes/dailychallenge');
 
 var app = express();
 
@@ -26,6 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/contact-select', contactSelectRouter);
+app.use('/daily-challenge', dailyChallengeRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
