@@ -1,9 +1,9 @@
 var express = require('express');
-const Contact = require('../models/contact');
 var router = express.Router();
 
+/* GET users listing. */
 router.get('/', function(req, res, next) {
-    res.render('contactselect');
+  res.send('respond with a resource');
 });
 
 module.exports = router;
