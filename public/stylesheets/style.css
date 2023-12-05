@@ -6,3 +6,52 @@ body {
 a {
   color: #00B7FF;
 }
+
+.daily-challenge {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.daily-challenge-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.area-code-input {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.area-code-line {
+  width: 20px;
+  height: 2px;
+  background-color: black;
+  margin: 0 5px;
+}
+
+.location-title {
+  font-size: 18px;
+  margin-top: 20px;
+}
+
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-top: 20px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+}
+
+.go-button {
+  background-color: blue;
+  color: white;
+}
+
+.lives-button {
+  background-color: green;
+  color: white;
+}
