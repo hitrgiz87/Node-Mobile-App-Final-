@@ -18,7 +18,7 @@ router.get('/', async function(req, res, next) {
     // }
 
     // If the database is empty run through initial contact selection
-    if (contacts.length == 0) {
+    if (contacts.length == 0 && false) { // Effectively disable this for now - Phil
         res.redirect('/contact-select');
     } else {
         res.render('index');
