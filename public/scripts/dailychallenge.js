@@ -16,6 +16,14 @@ var previousRandomIndex = -1;
 var correctAreaCode;
 let remainingTries = maxTries;
 
+// Restrict input to 3 numbers
+document.getElementById("areaCodeInput").addEventListener("input", function() {
+    var inputValue = this.value;
+    var numericValue = inputValue.replace(/\D/g, '');
+    var truncatedValue = numericValue.slice(0, 3);
+    this.value = truncatedValue;
+});
+
 function selectRandomLocation() {
     var randomIndex;
     do {
