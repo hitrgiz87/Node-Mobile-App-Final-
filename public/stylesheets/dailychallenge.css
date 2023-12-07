@@ -24,16 +24,15 @@
   cursor: pointer;
   border: none;
   border-radius: 5px;
+  color: white;
 }
   
 .go-button {
   background-color: #4d8be1;
-  color: white;
 }
   
 .lives-button {
   background-color: #8ee14d;
-  color: white;
 }
 
 .result-box {
@@ -52,5 +51,18 @@
 }
 
 .result-box.show {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.close-button {
+  background-color: #4d8be1;
+}
+
+#resultMessage {
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 10px;
 }
