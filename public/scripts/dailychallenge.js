@@ -1,3 +1,4 @@
+const maxTries = 3;
 var locations = [
     { town: "Pittsburg", state: "Kansas", areaCode: "620" },
     { town: "Girard", state: "Kansas", areaCode: "620" },
@@ -11,9 +12,9 @@ var locations = [
     { town: "Arcadia", state: "Kansas", areaCode: "417" },
     { town: "Joplin", state: "Missouri", areaCode: "417" },
 ];
-
 var previousRandomIndex = -1;
 var correctAreaCode;
+let remainingTries = maxTries;
 
 function selectRandomLocation() {
     var randomIndex;
@@ -49,6 +50,8 @@ function incorrect() {
     var resultMessage = document.getElementById("resultMessage");
     resultMessage.innerText = "Incorrect";
     openResultBox();
+    remainingTries--;
+    updateHearts();
 }
 
 function openResultBox() {
@@ -61,4 +64,16 @@ function closeResultBox() {
     resultBox.classList.remove("show");
 }
 
+function updateHearts() {
+    const heartContainer = document.getElementById("heart-container");
+    heartContainer.innerHTML = ""; // Clear existing hearts
+    for (let i = 0; i < remainingTries; i++) {
+        const heart = document.createElement("span");
+        heart.className = "heart";
+        heart.innerText = "♥";
+        heartContainer.appendChild(heart);
+    }
+}
+
 selectRandomLocation();
+updateHearts();
