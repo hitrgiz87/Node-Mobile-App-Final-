@@ -9,16 +9,24 @@
         <div class="container">
             <form>
                 <% for (let i=0; i < userData.length; i++) { %>
-                    <div class="row border">
+                    <div class="row mb-1 p-1 border">
                         <div class="col">
                             <img src=<%= profilePic[i] %> /> 
                         </div>
 
                         <!-- TODO: make table or form work i dont care -->
-                        <!-- <div class="col">
-                            <p>;lkjasdffjkl;</p>
-                            <p>;lkjasdffjkl;</p>
-                        </div> -->
+                        <div class="col">
+                            <p><%= userData[i].name %></p>
+                            <p><%= phones[i] %></p>
+                        </div>
+
+                        <div class="col">
+                            <input 
+                                type="checkbox"
+                                id="selector_" + <%= i %>
+                            />
+                        </div>
+
                     </div>
                 <% } %>
             </form>

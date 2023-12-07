@@ -5,22 +5,60 @@ const Contact = require('../models/contact');
 
 router.get('/', async function(req, res, next) {
     let userData = await axios.get('https://jsonplaceholder.typicode.com/users');
-    let profilePic = [];
+    let phones = processPhoneNumbers(userData.data);
+    let profilePics = generateProfilePictures(userData.data);
+    
+    // console.log(profilePics);
+    // console.log(phones);
 
-    for (let i=0; i < userData.data.length; i++) {
+    res.render('contactselect', {userData: userData.data, phones: phones, profilePic: profilePics});
+});
+
+/**
+ * Generate default profile pictures with initials from user data from jsonPlaceholder
+ * @param {*} userData, Assume userData is from jsonPlaceholder
+ */
+function generateProfilePictures(userData) {
+    var profilePics = [];
+
+    for (let i=0; i < userData.length; i++) {
+        let name = userData[i].name;
+
         // Split the full name into an array using space as the separator
-        var nameArray = userData.data[i].name.split(" ");
+        let nameArray = name.split(" ");
 
         // Extract the first name (index 0) and last name (index 1)
-        var firstName = nameArray[0];
-        var lastName = nameArray.slice(1).join(" "); // Join the remaining parts as the last name
+        let firstName = nameArray[0];
+        let lastName = nameArray.slice(1).join(" "); // Join the remaining parts as the last name
         
-        profilePic[i] = "https://ui-avatars.com/api/?name=" + firstName + "+" + lastName;
+        profilePics[i] = "https://ui-avatars.com/api/?name=" + firstName + "+" + lastName;
     }
-    
-    console.log(profilePic);
+    return profilePics;
+}
 
-    res.render('contactselect', {userData: userData.data, profilePic: profilePic});
-});
+/**
+ * Process phone numbers from jsonPlaceholder to be standardized
+ * @param {*} userData Assume userData is from jsonPlaceholder
+ */
+function processPhoneNumbers(userData) {
+    var phoneNumbers = [];
+    for (let i=0; i < userData.length; i++) {
+        let phone = userData[i].phone;
+
+        // Theres most likely a way to not have if statements here but I don't care
+        if (phone.substring(0, 1) === "(") {
+            phone = phone.substring(1).replaceAll(")", "-");
+        }
+        if (phone.substring(0, 2) === "1-") {
+            phone = phone.substring(2);
+        }
+
+        phone = phone.replaceAll(".", '-');        
+        phone = phone.substring(0, 12);        
+
+        phoneNumbers[i] = phone;
+    }
+    return phoneNumbers;
+}
 
 module.exports = router;
