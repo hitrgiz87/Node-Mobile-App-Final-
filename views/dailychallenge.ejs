@@ -9,13 +9,15 @@
   <body>
     <div class="daily-challenge">
       <h1 class="daily-challenge-title">Daily Challenge</h1>
-      <form id="guessForm" action="/daily-challenge/guess" method="post">
-        <label for="areaCode">Guess the Area Code:</label>
-        <input type="text" id="areaCode" name="areaCode" required>
-        <h2 class="location-title">Town, State</h2>
-        <button type="submit" class="button go-button">Go!</button>
-      </form>
-      <!-- <button class="button lives-button">Get More Lives</button> -->
+      <label for="areaCodeInput">Enter Area Code:</label>
+      <input type="text" id="areaCodeInput" placeholder="Enter area code">
+      <h2 class="location-title">Town, State</h2>
+      <button class="button go-button" onclick="guess()">Go!</button>
+      <div id="resultBox" class="result-box">
+        <div id="resultMessage"></div>
+        <button class="button close-button" onclick="closeResultBox()">Close</button>
+      </div>
     </div>
+    <script src="/scripts/dailychallenge.js"></script>
   </body>
 </html>
