@@ -9,10 +9,9 @@ router.get('/', function(req, res, next) {
 router.post('/guess', async (req, res) => {
     try {
         const areaCode = req.body.areaCode;
-        console.log('Received area code:', areaCode);
-        res.send(areaCode);
+        alert(areaCode);
     } catch (error) {
-        console.error('Error processing guess:', error);
+        console.error('Error processing area code guess:', error);
         res.status(500).send('Internal Server Error');
     }
 });
