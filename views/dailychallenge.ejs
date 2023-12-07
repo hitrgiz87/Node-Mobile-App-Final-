@@ -9,9 +9,9 @@
   <body>
     <div class="daily-challenge">
       <h1 class="daily-challenge-title">Daily Challenge</h1>
-      <form id="guessForm" method="post">
-        <label for="areaCodeGuess">Guess the Area Code:</label>
-        <input type="text" id="areaCodeGuess" name="areaCodeGuess" required>
+      <form id="guessForm" action="/daily-challenge/guess" method="post">
+        <label for="areaCode">Guess the Area Code:</label>
+        <input type="text" id="areaCode" name="areaCode" required>
         <h2 class="location-title">Town, State</h2>
         <button type="submit" class="button go-button">Go!</button>
       </form>
