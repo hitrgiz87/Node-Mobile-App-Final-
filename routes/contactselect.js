@@ -5,13 +5,46 @@ const Contact = require('../models/contact');
 
 router.get('/', async function(req, res, next) {
     let userData = await axios.get('https://jsonplaceholder.typicode.com/users');
-    let phones = processPhoneNumbers(userData.data);
+    let phones = standardizePhoneNumbers(userData.data);
     let profilePics = generateProfilePictures(userData.data);
     
     // console.log(profilePics);
     // console.log(phones);
 
     res.render('contactselect', {userData: userData.data, phones: phones, profilePic: profilePics});
+});
+
+router.post('/submit', async function(req, res, next) {
+    let selectedContacts = parseSelectedContactsString(req.body.selectedContacts);
+
+    // console.log(selectedContacts);
+
+    try {
+        for (let i=0; i < selectedContacts.length; i++) {
+            // contactArr[0] is name and contactArr[1] is phone num
+            let contactArr = selectedContacts[i].split(", ");
+        
+            const contact = new Contact({
+                name: contactArr[0],
+                number: contactArr[1],
+            });
+
+            // Doesnt work if I just pass in contact ????
+            if (Contact.exists({
+                name: contactArr[0],
+                number: contactArr[1],
+            }) !== null) {
+                // console.log('Contact already exists');
+                continue;
+            }
+
+            await contact.save();
+        }
+        res.redirect("/");
+    } catch (e) {
+        // TODO: Proper error handling
+        res.render('error');
+    }    
 });
 
 /**
@@ -40,8 +73,9 @@ function generateProfilePictures(userData) {
  * Process phone numbers from jsonPlaceholder to be standardized
  * @param {*} userData Assume userData is from jsonPlaceholder
  */
-function processPhoneNumbers(userData) {
+function standardizePhoneNumbers(userData) {
     var phoneNumbers = [];
+
     for (let i=0; i < userData.length; i++) {
         let phone = userData[i].phone;
 
@@ -53,12 +87,25 @@ function processPhoneNumbers(userData) {
             phone = phone.substring(2);
         }
 
-        phone = phone.replaceAll(".", '-');        
-        phone = phone.substring(0, 12);        
+        phone = phone.replaceAll(".", '');   
+        phone = phone.replaceAll("-", '');             
+        phone = phone.substring(0, 10);        
 
         phoneNumbers[i] = phone;
     }
     return phoneNumbers;
+}
+
+/**
+ * 
+ * @param {*} selectedContacts Selected contacts string formatted like 
+ * [Contact 1 Name, Contact 1 Num][Contact 2 Name, Contact 2 Num]....
+ * @returns 
+ */
+function parseSelectedContactsString(selectedContacts) {
+    contactsArr = selectedContacts.replaceAll("[", "").split("]");
+    contactsArr.pop(); // Remove last element because it is empty and useless 
+    return contactsArr; 
 }
 
 module.exports = router;

@@ -6,34 +6,71 @@
     </head>
     <body>
         <h1> CONTACT SELECT</h1>
-        <div class="container">
-            <form>
+        <form id="contactSelectForm" method="POST" action="contact-select/submit">
+            <div class="container">
+                <input 
+                    type="hidden"
+                    name="selectedContacts"
+                    id="selectedContacts"
+                    value="";
+                />
                 <% for (let i=0; i < userData.length; i++) { %>
-                    <div class="row mb-1 p-1 border">
-                        <div class="col">
-                            <img src=<%= profilePic[i] %> /> 
-                        </div>
-
-                        <!-- TODO: make table or form work i dont care -->
-                        <div class="col">
-                            <p><%= userData[i].name %></p>
-                            <p><%= phones[i] %></p>
-                        </div>
-
-                        <div class="col">
-                            <input 
-                                type="checkbox"
-                                id="selector_" + <%= i %>
-                            />
-                        </div>
-
+                <div class="row mb-1 p-1 border">
+                    <div class="col">
+                        <img src=<%= profilePic[i] %> /> 
                     </div>
-                <% } %>
-            </form>
-        </div>
 
-    <%- include ./partials/scripts %>
+                    <div class="col">
+                        <p id="name_"><%= userData[i].name %></p>
+                        <p id="phone_>"><%= phones[i] %></p>
+                    </div>
+
+                    <div class="col">
+                        <input 
+                            type="checkbox"
+                            name="selector_"
+                            id="selector_"
+                        />
+                    </div>
+
+                </div>
+                <% } %>
+                <div class="row">
+                    <!-- TODO: Add confimation before submit -->
+                    <input type="submit" name="submit"/>
+                </div>
+            </div>
+        </form>
+        <%- include ./partials/scripts %>
+        <!-- DOM Selector Logic Script -->
+        <script type="text/javascript">
+            // I wish I knew a cooler way of doing this but this will do
+            $(document).ready(function () {
+                // Updates the names of the ids
+                $('[id^="name_"]').each(function (index) {
+                    $(this).attr('id', 'name_' + index);
+                });
+                $('[id^="phone_"]').each(function (index) {
+                    $(this).attr('id', 'phone_' + index);
+                });
+                $('[id^="selector_"]').each(function (index) {
+                    $(this).attr('id', 'selector_' + index);
+                    $(this).attr('name', 'selector_' + index);
+                    // Sets checker box to change the selectedContacts value to add or remove the selected contact
+                    $(this).change(function () {
+                        let currentSelection = $('#selectedContacts').val();
+                        let contactString = "[" + $('#name_' + index).text() + ", " + $('#phone_' + index).text() + "]";
+                        if (this.checked) {
+                            $('#selectedContacts').val(
+                                currentSelection + contactString);
+                        } else {
+                            $('#selectedContacts').val(
+                                currentSelection.replace(contactString, ""));
+                        }
+                    });
+                });
+
+            });
+        </script>
     </body>
 </html>
-
-
