@@ -1,0 +1,74 @@
+.daily-challenge {
+  max-width: 600px;
+  margin: 20px auto;
+  text-align: center;
+}
+  
+.daily-challenge-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+  
+.location-title {
+  font-size: 18px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+  
+.button {
+  display: block;
+  width: 60%;
+  padding: 15px;
+  margin: 20px auto;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  color: white;
+}
+  
+.go-button {
+  background-color: #4d8be1;
+}
+  
+.lives-button {
+  background-color: #8ee14d;
+}
+
+.result-box {
+  display: none;
+  position: fixed;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 200px;
+  width: 100%;
+  border: 1px solid #ccc;
+  padding: 10px;
+  background-color: #f5f5f5;
+  max-width: 300px;
+  z-index: 999;
+}
+
+.result-box.show {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.close-button {
+  background-color: #4d8be1;
+}
+
+.heart {
+  color: red;
+  font-size: 24px;
+  margin: 5px;
+}
+
+#resultMessage {
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 10px;
+}

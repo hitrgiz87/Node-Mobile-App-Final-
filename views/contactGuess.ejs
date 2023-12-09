@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='/stylesheets/contactGuess.css' />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <title>Contact Guess Page</title>
+</head>
+<body>
+    <div id="icon">
+        <img src="/img/logo.png" alt="in app icon">
+        <h5>Contact Conundrum</h5>
+    </div>
+    
+    <div id="head">
+        <h5>Contact Guess</h5>
+    </div>
+
+    <!-- <div id="game-container">
+        <div id="word-container"></div>
+        <div id="heart-container"></div>
+        <input type="text" id="guessInput" placeholder="Enter your guess">
+        <button id="submitGuess" onclick="checkGuess()">Submit Guess</button>
+        <div id="result"></div>
+    </div> -->
+
+    <!-- <h1>Guess the Contact</h1>-->
+
+
+
+    <div id="game-container">
+        <!-- Existing content -->
+        <h4> <%= phoneNumber %></h4>
+
+        <form id="guessForm" method="post">
+      
+         
+          
+          <div id="word-container"></div>
+          <div id="heart-container"></div>
+          <label for="guessedName">Guess the Name:</label>
+          <input type="text" id="guessInput" name="guessInput" required>
+          <input type="hidden" id="phoneNumber" name="phoneNumber" value="<%= phoneNumber %>">
+          <button type="submit">Submit Guess</button>
+        </form>
+      
+        <div id="result"></div>
+      </div>
+
+     <script src="/Scripts/contactGuess.js"></script> 
+</body>
+</html>

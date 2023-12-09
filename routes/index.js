@@ -35,7 +35,7 @@ router.get('/contact-guess', function(req, res, next) {
     // res.render();
 }); 
 // TODO: Add navigation with other pages once they are co
-router.get('/daily-challenge', function(req, res, next) {
+router.get('/dailychallenge', function(req, res, next) {
     // res.render();
 }); 
 
