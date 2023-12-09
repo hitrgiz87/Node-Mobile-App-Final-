@@ -29,14 +29,14 @@ router.post('/submit', async function(req, res, next) {
                 number: contactArr[1],
             });
 
-            // Doesnt work if I just pass in contact ????
-            if (Contact.exists({
-                name: contactArr[0],
-                number: contactArr[1],
-            }) !== null) {
-                // console.log('Contact already exists');
-                continue;
-            }
+            // // Doesnt work if I just pass in contact ????
+            // if (Contact.exists({
+            //     name: contactArr[0],
+            //     number: contactArr[1],
+            // }) !== null) {
+            //     // console.log('Contact already exists');
+            //     continue;
+            // }
 
             await contact.save();
         }

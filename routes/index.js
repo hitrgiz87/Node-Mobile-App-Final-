@@ -18,7 +18,7 @@ router.get('/', async function(req, res, next) {
     // }
 
     // If the database is empty run through initial contact selection
-    if (contacts.length == 0) {
+    if (contacts.length === 0) {
         res.redirect('/contact-select');
     } else {
         res.render('index');
@@ -26,9 +26,10 @@ router.get('/', async function(req, res, next) {
 
 });
 
-router.get('/contact-select', function(req, res, next) {
-    res.render('contactselect');
-});
+// Really funny jonas
+// router.get('/contact-select', function(req, res, next) {
+//     res.render('contactselect');
+// });
 
 // TODO: Add navigation with other pages once they are co
 router.get('/contact-guess', function(req, res, next) {
