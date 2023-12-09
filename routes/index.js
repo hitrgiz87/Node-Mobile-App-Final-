@@ -20,7 +20,7 @@ router.get('/', async function(req, res, next) {
     // }
 
     // If the database is empty run through initial contact selection
-    if (contacts.length == 0) {
+    if (contacts.length === 0) {
         res.redirect('/contact-select');
     } else {
         res.render('index');
