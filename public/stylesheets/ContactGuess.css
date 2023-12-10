@@ -65,3 +65,11 @@ a {
   font-size: 20px;
   margin-top: 20px;
 }
+.modal-body, .modal-footer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%; /* Ensure the content takes the full height of the modal */
+}
+
+
