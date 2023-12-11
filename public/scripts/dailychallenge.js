@@ -14,6 +14,7 @@ var locations = [
 ];
 var previousRandomIndex = -1;
 var correctAreaCode;
+var score = 0;
 let remainingTries = maxTries;
 
 // Restrict input to 3 numbers
@@ -38,7 +39,10 @@ function selectRandomLocation() {
 
 function guess() {
     var areaCodeInput = document.getElementById("areaCodeInput");
-    var areaCode = areaCodeInput.value;
+    var areaCode = areaCodeInput.value.trim();
+    if (areaCode === '') {
+        return;
+    }
     if (areaCode === correctAreaCode) {
         correct();
     } else {
@@ -47,34 +51,55 @@ function guess() {
     areaCodeInput.value = "";
 }
 
+
 function correct() {
     var resultMessage = document.getElementById("resultMessage");
     resultMessage.innerText = "Correct!";
     openResultBox();
     selectRandomLocation();
+    score++;
+    updateScoreDisplay();
 }
 
 function incorrect() {
     var resultMessage = document.getElementById("resultMessage");
-    resultMessage.innerText = "Incorrect";
-    openResultBox();
     remainingTries--;
     updateHearts();
+    if (remainingTries === 0) {
+        resultMessage.innerText = "Incorrect. You are out of lives!";
+    }
+    else {
+        resultMessage.innerText = "Incorrect.";
+    }
+    openResultBox();
+}
+
+function updateScoreDisplay() {
+    var scoreDisplay = document.getElementById("scoreDisplay");
+    scoreDisplay.innerText = score;
 }
 
 function openResultBox() {
     var resultBox = document.getElementById("resultBox");
+    var goButton = document.getElementsByClassName("go-button")[0];
     resultBox.classList.add("show");
+    goButton.disabled = true;
 }
 
 function closeResultBox() {
     var resultBox = document.getElementById("resultBox");
+    var goButton = document.getElementsByClassName("go-button")[0];
     resultBox.classList.remove("show");
+    goButton.disabled = false;
+
+    if (remainingTries === 0) {
+        returnToMainMenu();
+    }
 }
 
 function updateHearts() {
     const heartContainer = document.getElementById("heart-container");
-    heartContainer.innerHTML = ""; // Clear existing hearts
+    heartContainer.innerHTML = "";
     for (let i = 0; i < remainingTries; i++) {
         const heart = document.createElement("span");
         heart.className = "heart";
@@ -83,5 +108,10 @@ function updateHearts() {
     }
 }
 
+function returnToMainMenu() {
+    window.location.href = '/';
+}
+
 selectRandomLocation();
 updateHearts();
+updateScoreDisplay();
