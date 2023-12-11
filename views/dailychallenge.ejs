@@ -7,13 +7,14 @@
     <link rel="stylesheet" href="/stylesheets/dailychallenge.css" />
   </head>
   <body>
+    <div class="score">Score: <span id="scoreDisplay">0</span></div>
     <div class="daily-challenge">
       <h1 class="daily-challenge-title">Daily Challenge</h1>
-      <label for="areaCodeInput">Enter Area Code:</label>
       <input type="text" id="areaCodeInput" placeholder="Enter area code">
       <h2 class="location-title">Town, State</h2>
       <div id="heart-container"></div>
       <button class="button go-button" onclick="guess()">Go!</button>
+      <button class="button main-menu-button" onclick="returnToMainMenu()">Main Menu</button>
       <div id="resultBox" class="result-box">
         <div id="resultMessage"></div>
         <button class="button close-button" onclick="closeResultBox()">Close</button>
