@@ -2,18 +2,25 @@
 <html>
   <head>
     <title>Landing</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <%- include ./partials/header %>
   </head>
   <body>
-    <img src="/img/logo.png" alt="Contact Conundrum Logo"/>
-    <h1>Contact Conundrum</h1>
-    <!-- TODO: Rename this if we decide to change naming convention -->
-    <a href="/contactGuess">
-        <button type="button">Normal Play</button>
-    </a>
-    <!-- This too -->
-    <a href="/daily-challenge">
-        <button type="button">Daily Challenge</button>
-    </a>
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+      <img src="/img/logo.png" class="img-fluid" width="50%" alt="Contact Conundrum Logo"/>
+      <div class="container">
+        <h1 class="display-1">Contact Conundrum</h1>
+        <!-- TODO: Rename this if we decide to change naming convention -->
+        <br>
+        <a href="/contactGuess">
+            <button type="button" class="btn btn-primary btn-lg my-2">Normal Play</button>
+        </a>
+        <!-- This too -->
+        <a href="/daily-challenge">
+            <button type="button" class="btn btn-primary btn-lg my-2">Daily Challenge</button>
+        </a>  
+  
+      </div>
+    </div>
+  <%- include ./partials/scripts %>
   </body>
 </html>

@@ -5,9 +5,11 @@
         <%- include ./partials/header %>
     </head>
     <body>
-        <h1> CONTACT SELECT</h1>
-        <form id="contactSelectForm" method="POST" action="contact-select/submit">
-            <div class="container">
+        <div class="container text-center">
+            <h1> Select Contacts</h1>
+        </div>
+        <div class="container">
+            <form id="contactSelectForm" method="POST" action="contactselect/submit">
                 <input 
                     type="hidden"
                     name="selectedContacts"
@@ -15,32 +17,34 @@
                     value="";
                 />
                 <% for (let i=0; i < userData.length; i++) { %>
-                <div class="row mb-1 p-1 border">
+                <div class="row justify-content-center align-items-center mb-1 p-1 border">
                     <div class="col">
                         <img src=<%= profilePic[i] %> /> 
                     </div>
 
-                    <div class="col">
-                        <p id="name_"><%= userData[i].name %></p>
-                        <p id="phone_>"><%= phones[i] %></p>
+                    <div class="col-7">
+                        <h2 id="name_"><%= userData[i].name %></h2>
+                        <h2 id="phone_>"><%= phones[i] %></h2>
                     </div>
 
-                    <div class="col">
+                    <div class="col d-flex justify-content-center align-items-center">
                         <input 
                             type="checkbox"
                             name="selector_"
                             id="selector_"
+                            class="form-check-input fs-1"
+                            style="border: 2px solid #343a40; border-radius: 4px;"
                         />
                     </div>
 
                 </div>
                 <% } %>
-                <div class="row">
+                <div class="row justify-content-center align-items-center mb-1 p-1">
                     <!-- TODO: Add confimation before submit -->
-                    <input type="submit" name="submit"/>
+                    <input type="submit" name="submit" class="btn btn-primary btn-lg"/>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
         <%- include ./partials/scripts %>
         <!-- DOM Selector Logic Script -->
         <script type="text/javascript">
