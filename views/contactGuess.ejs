@@ -9,54 +9,178 @@
 </head>
 <body>
     <div id="icon">
-        <img src="/img/logo.png" alt="in app icon">
+        <img src="/img/logo.png" alt="in-app icon">
         <h5>Contact Conundrum</h5>
     </div>
     
-    <div id="head">
-       
-    </div>
-   <!-- Add the Bootstrap modal structure at the end of your body section -->
-   <div class="modal fade" id="resultModal" tabindex="-1" role="dialog" aria-labelledby="resultModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
+    <div id="head"></div>
 
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body" id="resultModalBody">
-                <!-- Result content will be displayed here -->
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <!-- Add the Bootstrap modal structure at the end of your body section -->
+    <div class="modal fade" id="resultModal" tabindex="-1" role="dialog" aria-labelledby="resultModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="resultModalBody">
+                    <!-- Result content will be displayed here -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
     <div id="game-container">
         <!-- Existing content -->
-        <h4> <%= phoneNumber %></h4>
+        <h4><%= phoneNumber %></h4>
 
         <form id="guessForm" action="/contactGuess/guess" method="post">
-          <div id="word-container"></div>
-          <div id="heart-container"></div>
-          <label for="guessedName">Guess the Name:</label>
-          <input type="text" id="guessInput" name="guessInput" required>
-          <input type="hidden" id="phoneNumber" name="phoneNumber" value="<%= phoneNumber %>">
-          <button type="submit">Submit Guess</button>
+            <div id="word-container"></div>
+            <div  id="heart-container" data-remaining-tries="<%= remainingTries %>"></div>
+            <label for="guessedName">Guess the Name:</label>
+            <input type="text" id="guessInput" name="guessInput" required>
+            <input type="hidden" id="phoneNumber" name="phoneNumber" value="<%= phoneNumber %>">
+            <button class="btn button main-menu-button" type="submit">Submit Guess</button>
         </form>
+        <div>
+            <br>
+            <button class="btn button main-menu-button" onclick="window.location.href='/'">Main Menu</button>
+        </div>
         
         <div id="result"></div>
     </div>
 
- 
     <!-- Include Bootstrap and jQuery scripts -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script>
+// contactGuess.js
+
+document.addEventListener("DOMContentLoaded", function () {
+    const guessForm = document.getElementById("guessForm");
+    guessForm.addEventListener("submit", handleGuessFormSubmit);
+
+    function handleGuessFormSubmit(event) {
+        event.preventDefault();
+
+        const formData = new FormData(guessForm);
+        const xhr = new XMLHttpRequest();
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                const resultModalBody = document.getElementById("resultModalBody");
+
+                if (xhr.status === 200) {
+                    // Parse the JSON response for both correct and incorrect guesses
+                    const response = JSON.parse(xhr.responseText);
+
+                    // Display the result in the modal
+                    resultModalBody.innerText = response.result;
+
+                    // Check if the response includes remainingTries
+                    if (response.remainingTries !== undefined) {
+                        // Update hearts
+                        updateHearts(response.remainingTries);
+
+                        // Show the modal
+                        $('#resultModal').modal('show');
+                    }
+                } else {
+                    console.error('Server returned an error:', xhr.status, xhr.statusText);
+                }
+            }
+        };
+
+        xhr.open("POST", guessForm.action, true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send(new URLSearchParams(formData).toString());
+    }
+
+    function updateHearts(remainingTries) {
+        const heartContainer = document.getElementById("heart-container");
+
+        // Update hearts logic here
+
+        // Example: Display remainingTries hearts
+        heartContainer.innerHTML = "";
+        for (let i = 0; i < remainingTries; i++) {
+            const heart = document.createElement("span");
+            heart.className = "heart";
+            heart.innerText = "♥";
+            heartContainer.appendChild(heart);
+        }
+
+        // Update the data attribute with the remaining tries
+        heartContainer.dataset.remainingTries = remainingTries;
+    }
+});
+document.addEventListener("DOMContentLoaded", function () {
+    const guessForm = document.getElementById("guessForm");
+    guessForm.addEventListener("submit", handleGuessFormSubmit);
+
+    function handleGuessFormSubmit(event) {
+        event.preventDefault();
+
+        const formData = new FormData(guessForm);
+        const xhr = new XMLHttpRequest();
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                const resultModalBody = document.getElementById("resultModalBody");
+
+                if (xhr.status === 200) {
+                    const response = JSON.parse(xhr.responseText);
+
+                    // Display the result in the modal
+                    resultModalBody.innerText = response.result;
+
+                    if (response.newPhoneNumber !== undefined) {
+                        // Update the displayed number
+                        document.getElementById("phoneNumber").innerText = response.newPhoneNumber;
+                        
+                        // Update hearts
+                        updateHearts(response.remainingTries);
+
+                        // Show the modal
+                        $('#resultModal').modal('show');
+                    }
+                } else {
+                    console.error('Server returned an error:', xhr.status, xhr.statusText);
+                }
+            }
+        };
+
+        xhr.open("POST", guessForm.action, true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send(new URLSearchParams(formData).toString());
+    }
+
+    function updateHearts(remainingTries) {
+        const heartContainer = document.getElementById("heart-container");
+
+        // Update hearts logic here
+
+        // Example: Display remainingTries hearts
+        heartContainer.innerHTML = "";
+        for (let i = 0; i < remainingTries; i++) {
+            const heart = document.createElement("span");
+            heart.className = "heart";
+            heart.innerText = "♥";
+            heartContainer.appendChild(heart);
+        }
+
+        // Update the data attribute with the remaining tries
+        heartContainer.dataset.remainingTries = remainingTries;
+    }
+});
+
+
+    </script>
     <script src="/Scripts/contactGuess.js"></script>
 </body>
 </html>

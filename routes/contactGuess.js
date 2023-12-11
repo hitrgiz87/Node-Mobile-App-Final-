@@ -5,7 +5,14 @@ const Contact = require('../models/contact');
 router.get('/', async function(req, res, next) {
   try {
     const randomContact = await getRandomContact();
-    res.render('contactGuess', { title: 'Contact Guess', phoneNumber: randomContact.number, contactName: randomContact.name });
+    const remainingTries = 3; // Adjust this value based on your logic
+
+    res.render('contactGuess', {
+      title: 'Contact Guess',
+      phoneNumber: randomContact.number,
+      contactName: randomContact.name,
+      remainingTries: remainingTries,
+    });
   } catch (error) {
     console.error(error);
     res.status(500).send('Internal Server Error');
@@ -19,32 +26,37 @@ async function getRandomContact() {
   return Contact.findOne().skip(randomIndex);
 }
 
+// Assume you have a function like getRandomContact
 router.post('/guess', async (req, res) => {
   const phoneNumber = req.body.phoneNumber;
   const guessedName = req.body.guessInput;
 
   try {
-      const contact = await Contact.findOne({ number: phoneNumber });
+    const contact = await Contact.findOne({ number: phoneNumber });
 
-      if (!contact) {
-          console.log(`Contact not found for phone number ${phoneNumber}`);
-          return res.status(404).send('Contact not found');
-      }
+    if (!contact) {
+      console.log(`Contact not found for phone number ${phoneNumber}`);
+      return res.status(404).send('Contact not found');
+    }
 
-      if (guessedName.toLowerCase() === contact.name.toLowerCase()) {
-          // Correct guess, send a response for the modal
-          return res.status(200).send('Correct guess!'); // Adjust the response as needed
-      } else {
-          return res.status(200).send('Incorrect guess. Try again.'); // Adjust the response as needed
-      }
+    if (guessedName.toLowerCase() === contact.name.toLowerCase()) {
+      // Correct guess, get a new random contact
+      const newContact = await getRandomContact();
+
+      // Send the new contact information as a response
+      return res.status(200).json({ result: 'Correct guess!', newPhoneNumber: newContact.number });
+    } else {
+      // Incorrect guess, send a response indicating incorrect guess
+      const remainingTries = 2; // Adjust this value based on your logic
+      return res.status(200).json({ result: 'Incorrect guess. Try again.', remainingTries: remainingTries });
+    }
   } catch (error) {
-      console.error(error);
-      console.log(`Error occurred searching for contact with phone number ${phoneNumber}`);
-      console.log(`Error: ${error}`);
-      return res.status(500).send('Internal Server Error');
+    console.error(error);
+    console.log(`Error occurred searching for contact with phone number ${phoneNumber}`);
+    console.log(`Error: ${error}`);
+    return res.status(500).send('Internal Server Error');
   }
 });
-
 
 
 
